@@ -34,9 +34,12 @@ static uint8_t s_log_buf_storage[512];
 static eMemfaultPlatformLogLevel s_min_log_level = MEMFAULT_RAM_LOGGER_DEFAULT_MIN_LOG_LEVEL;
 
 void memfault_platform_get_device_info(sMemfaultDeviceInfo *info) {
+  const char *mfg_serial_number = mfg_get_serial_number();
+  const char *mfg_hw_rev = mfg_get_hw_version();
+
   *info = (sMemfaultDeviceInfo){
-    .device_serial = mfg_get_serial_number(),
-    .hardware_version = mfg_get_hw_version(),
+    .device_serial = (mfg_serial_number[0] != '\0') ? mfg_serial_number : "unknown",
+    .hardware_version = (mfg_hw_rev[0] != '\0') ? mfg_hw_rev : "unknown",
     .software_type = "qemu-app",
     .software_version = "1.0.0",
   };

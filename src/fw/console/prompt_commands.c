@@ -1337,6 +1337,11 @@ void command_mflt_metrics_dump(void) {
   memfault_metrics_heartbeat_debug_print();
 }
 
+void command_mflt_device_info(void) {
+  memfault_build_info_dump();
+  memfault_device_info_dump();
+}
+
 #if PERFORMANCE_TESTS
 // for task_watchdog_bit_set_all
 #include "drivers/task_watchdog.h"
