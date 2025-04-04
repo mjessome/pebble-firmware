@@ -315,6 +315,7 @@ extern void command_bt_sleep_check(const char *iters);
 
 extern void command_mflt_export(void);
 extern void command_mflt_heartbeat(void);
+extern void command_mflt_metrics_dump(void);
 
 #if PLATFORM_TINTIN && !TARGET_QEMU
 // We don't have space for anything that's not absolutely required for firmware development
@@ -722,6 +723,7 @@ static const Command s_prompt_commands[] = {
 
   { "mflt export", command_mflt_export, 0 },
   { "mflt heartbeat", command_mflt_heartbeat, 0 },
+  { "mflt metrics_dump", command_mflt_metrics_dump, 0 },
 };
 
 #define NUM_PROMPT_COMMANDS ARRAY_LENGTH(s_prompt_commands)

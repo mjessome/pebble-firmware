@@ -35,6 +35,7 @@
 #include "kernel/util/factory_reset.h"
 #include "kernel/util/sleep.h"
 #include "kernel/util/stop.h"
+#include "memfault/metrics/metrics.h"
 #include "mfg/mfg_apps/mfg_flash_test.h"
 #include "process_management/app_manager.h"
 #include "process_management/worker_manager.h"
@@ -1330,6 +1331,10 @@ void command_mflt_export(void) {
 
 void command_mflt_heartbeat(void) {
   memfault_metrics_heartbeat_debug_trigger();
+}
+
+void command_mflt_metrics_dump(void) {
+  memfault_metrics_heartbeat_debug_print();
 }
 
 #if PERFORMANCE_TESTS

@@ -117,8 +117,6 @@
 
 #include <string.h>
 
-#include "memfault/core/platform/core.h"
-
 /* here is as good as anywhere else ... */
 const int __attribute__((used)) uxTopUsedPriority = configMAX_PRIORITIES - 1;
 
@@ -399,8 +397,6 @@ static NOINLINE void prv_main_task_init(void) {
   pulse_init();
   pulse_logging_init();
 #endif
-
-  memfault_platform_boot();
 
   pebble_task_configure_idle_task();
 
