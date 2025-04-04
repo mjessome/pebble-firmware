@@ -13,6 +13,7 @@
 #include "memfault/ports/reboot_reason.h"
 
 #include "mfg/mfg_serials.h"
+#include "os/mutex.h"
 #include "services/common/clock.h"
 #include "system/logging.h"
 
@@ -113,10 +114,22 @@ void memfault_platform_reboot_tracking_boot(void) {
   memfault_reboot_tracking_boot(s_reboot_tracking, &reset_info);
 }
 
+static PebbleRecursiveMutex *s_memfault_lock;
+
+void memfault_lock(void) {
+  register uint32_t LR __asm ("lr");
+  uint32_t myLR = LR;
+  mutex_lock_recursive_with_timeout_and_lr(s_memfault_lock, portMAX_DELAY, myLR);
+}
+
+void memfault_unlock(void) {
+  mutex_unlock_recursive(s_memfault_lock);
+}
+
 int memfault_platform_boot(void) {
   // puts(MEMFAULT_BANNER_COLORIZED);
 
-  // memfault_freertos_port_boot();
+  s_memfault_lock = mutex_create_recursive();
 
   memfault_platform_reboot_tracking_boot();
 
