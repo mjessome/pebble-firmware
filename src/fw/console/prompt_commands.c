@@ -61,6 +61,8 @@
 #include <bluetooth/responsiveness.h>
 #include <bluetooth/gatt_discovery.h>
 
+#include <memfault/components.h>
+
 #include <inttypes.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -1320,6 +1322,14 @@ void command_ble_core_dump(const char *command) {
   }
 
   bt_driver_core_dump(option);
+}
+
+void command_mflt_export(void) {
+  memfault_data_export_dump_chunks();
+}
+
+void command_mflt_heartbeat(void) {
+  memfault_metrics_heartbeat_debug_trigger();
 }
 
 #if PERFORMANCE_TESTS

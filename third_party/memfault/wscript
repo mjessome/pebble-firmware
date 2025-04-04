@@ -1,0 +1,47 @@
+def configure(conf):
+    pass
+
+
+def build(bld):
+    memfault_includes = [
+        "memfault-firmware-sdk/",
+        "memfault-firmware-sdk/components/include",
+        "memfault-firmware-sdk/ports/include",
+    ]
+
+    memfault_sources = bld.path.ant_glob(
+        [
+            "memfault-firmware-sdk/components/core/src/*.c",
+            "memfault-firmware-sdk/components/metrics/src/*.c",
+            "memfault-firmware-sdk/components/util/src/*.c",
+        ]
+    )
+
+    bld(export_includes=memfault_includes, name="memfault_includes")
+
+    port_includes = [
+        "port/include",
+    ]
+    port_sources = bld.path.ant_glob(
+        [
+            "port/src/*.c",
+        ]
+    )
+
+    bld.stlib(
+        target="memfault",
+        includes=port_includes,
+        source=[
+            *memfault_sources,
+            *port_sources,
+        ],
+        export_includes=[
+            *memfault_includes,
+            *port_includes,
+        ],
+        use=[
+            'memfault_includes',
+            'freertos',
+            'fw_includes',
+        ],
+    )

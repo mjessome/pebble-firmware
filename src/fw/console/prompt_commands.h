@@ -313,6 +313,8 @@ extern void command_perftest_text_all(void);
 
 extern void command_bt_sleep_check(const char *iters);
 
+extern void command_mflt_export(void);
+extern void command_mflt_heartbeat(void);
 
 #if PLATFORM_TINTIN && !TARGET_QEMU
 // We don't have space for anything that's not absolutely required for firmware development
@@ -717,6 +719,9 @@ static const Command s_prompt_commands[] = {
   { "accel reset", command_accel_softreset, 0 },
 #endif // PLATFORM_SILK
   { "vibe", command_vibe_ctl, 1 },
+
+  { "mflt export", command_mflt_export, 0 },
+  { "mflt heartbeat", command_mflt_heartbeat, 0 },
 };
 
 #define NUM_PROMPT_COMMANDS ARRAY_LENGTH(s_prompt_commands)
