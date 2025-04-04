@@ -62,5 +62,8 @@ static eMemfaultRebootReason prv_pbl_reboot_to_mflt_reboot(RebootReasonCode reas
 
 void memfault_reboot_reason_get(sResetBootupInfo *reset_info) {
   RebootReasonCode pbl_reason = reboot_reason_get_last_reboot_reason();  // Should this be reboot_reason_get()?
-  reset_info->reset_reason = prv_pbl_reboot_to_mflt_reboot(pbl_reason);
+  *reset_info = (sResetBootupInfo){
+    .reset_reason_reg = pbl_reason,
+    .reset_reason = prv_pbl_reboot_to_mflt_reboot(pbl_reason),
+  };
 }
