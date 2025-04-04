@@ -127,12 +127,10 @@ int memfault_platform_boot(void) {
 
   memfault_reboot_tracking_collect_reset_info(evt_storage);
 
-#if defined(MEMFAULT_COMPONENT_metrics_)
   sMemfaultMetricBootInfo boot_info = {
     .unexpected_reboot_count = memfault_reboot_tracking_get_crash_count(),
   };
   memfault_metrics_boot(evt_storage, &boot_info);
-#endif
 
   memfault_log_boot(s_log_buf_storage, MEMFAULT_ARRAY_SIZE(s_log_buf_storage));
 
@@ -224,4 +222,11 @@ uint64_t memfault_platform_get_time_since_boot_ms(void) {
   taskEXIT_CRITICAL();
 
   return (s_elapsed_ticks * 1000) / configTICK_RATE_HZ;
+}
+
+bool memfault_platform_metrics_timer_boot(uint32_t period_sec,
+                                          MemfaultPlatformTimerCallback callback) {
+  // FIXME we don't have freertos timers either, we are broke.
+  (void)period_sec, (void)callback;
+  return true;
 }
