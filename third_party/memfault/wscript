@@ -23,8 +23,6 @@ def build(bld):
         ]
     )
 
-    bld(export_includes=memfault_includes, name="memfault_includes")
-
     port_includes = [
         "port/include",
     ]
@@ -34,6 +32,14 @@ def build(bld):
         ]
     )
 
+    bld(
+        export_includes=[
+            *memfault_includes,
+            *port_includes,
+        ],
+        name="memfault_includes",
+    )
+
     bld.stlib(
         target="memfault",
         includes=port_includes,
@@ -41,10 +47,7 @@ def build(bld):
             *memfault_sources,
             *port_sources,
         ],
-        export_includes=[
-            *memfault_includes,
-            *port_includes,
-        ],
+        export_includes=memfault_includes,
         use=[
             "memfault_includes",
             "freertos",
