@@ -16,18 +16,22 @@ static eMemfaultRebootReason prv_pbl_reboot_to_mflt_reboot(RebootReasonCode reas
       return kMfltRebootReason_ButtonReset;
     case RebootReasonCode_ShutdownMenuItem:
       return kMfltRebootReason_UserShutdown;
-
-    // [MJ] TODO: Custom reboot reasons here.
     case RebootReasonCode_FactoryResetShutdown:
+      return kMfltRebootReason_FactoryResetShutdown;
     case RebootReasonCode_MfgShutdown:
+      return kMfltRebootReason_MfgShutdown;
     case RebootReasonCode_Serial:
+      return kMfltRebootReason_Serial;
     case RebootReasonCode_RemoteReset:
+      return kMfltRebootReason_RemoteReset;
     case RebootReasonCode_PrfReset:
+      return kMfltRebootReason_PrfReset;
     case RebootReasonCode_ForcedCoreDump:
+      return kMfltRebootReason_ForcedCoreDump;
     case RebootReasonCode_PrfIdle:
+      return kMfltRebootReason_PrfIdle;
     case RebootReasonCode_PrfResetButtonsHeld:
-      return kMfltRebootReason_Unknown;
-
+      return kMfltRebootReason_PrfResetButtonsHeld;
     case RebootReasonCode_Watchdog:
       return kMfltRebootReason_SoftwareWatchdog;
     case RebootReasonCode_Assert:
@@ -36,25 +40,28 @@ static eMemfaultRebootReason prv_pbl_reboot_to_mflt_reboot(RebootReasonCode reas
       return kMfltRebootReason_StackOverflow;
     case RebootReasonCode_HardFault:
       return kMfltRebootReason_HardFault;
-
-    // [MJ] TODO: Custom reboot reasons here.
     case RebootReasonCode_LauncherPanic:
+      return kMfltRebootReason_LauncherPanic;
     case RebootReasonCode_ClockFailure: // Not used on 3.x
+      return kMfltRebootReason_ClockFailure;
     case RebootReasonCode_AppHardFault: // Not used on 3.x
+      return kMfltRebootReason_AppHardFault;
     case RebootReasonCode_EventQueueFull:
+      return kMfltRebootReason_EventQueueFull;
     case RebootReasonCode_WorkerHardFault: // Off by default, compile in with WORKER_CRASH_CAUSES_RESET
-      return kMfltRebootReason_Unknown;
-
+      return kMfltRebootReason_WorkerHardFault;
     case RebootReasonCode_OutOfMemory:
       return kMfltRebootReason_OutOfMemory;
-
-    // [MJ] TODO: Custom reboot reasons here.
     case RebootReasonCode_FactoryResetReset:
+      return kMfltRebootReason_FactoryResetReset;
     case RebootReasonCode_DialogBootFault:
+      return kMfltRebootReason_DialogBootFault;
     case RebootReasonCode_BtCoredump:
+      return kMfltRebootReason_BtCoredump;
     case RebootReasonCode_CoreDump:  // Core dump initiated without a more specific reason set
+      return kMfltRebootReason_CoreDump;
     case RebootReasonCode_CoreDumpEntryFailed:
-      return kMfltRebootReason_Unknown;
+      return kMfltRebootReason_CoreDumpEntryFailed;
   }
 
   return kMfltRebootReason_Unknown;
