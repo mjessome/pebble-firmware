@@ -20,9 +20,10 @@
 
 #define MEMFAULT_COREDUMP_COMPUTE_THREAD_STACK_USAGE 1
 
-// Enable adding custom demo shell commands
-#define MEMFAULT_DEMO_SHELL_COMMAND_EXTENSIONS 1
-
 #define MEMFAULT_PLATFORM_HAS_LOG_CONFIG 0
+
+// base64-encoded chunks can overflow the maximum serial output length, so use a
+// slightly shorter length here
+#define MEMFAULT_DATA_EXPORT_CHUNK_MAX_LEN 50
 
 #define MEMFAULT_REBOOT_REASON_CUSTOM_ENABLE 1
