@@ -151,6 +151,8 @@ int memfault_platform_boot(void) {
 
   memfault_log_boot(s_log_buf_storage, MEMFAULT_ARRAY_SIZE(s_log_buf_storage));
 
+  memfault_metrics_battery_boot();
+
   memfault_build_info_dump();
   memfault_device_info_dump();
   MEMFAULT_LOG_INFO("Memfault Initialized!");

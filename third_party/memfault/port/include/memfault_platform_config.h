@@ -20,6 +20,7 @@
 
 #define MEMFAULT_COREDUMP_COMPUTE_THREAD_STACK_USAGE 1
 
+// Todo, we will hook more deeply into the Pebble logging system
 #define MEMFAULT_PLATFORM_HAS_LOG_CONFIG 0
 
 // base64-encoded chunks can overflow the maximum serial output length, so use a
@@ -27,3 +28,5 @@
 #define MEMFAULT_DATA_EXPORT_CHUNK_MAX_LEN 50
 
 #define MEMFAULT_REBOOT_REASON_CUSTOM_ENABLE 1
+
+#define MEMFAULT_METRICS_BATTERY_ENABLE 1
